@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Listagem de Livros</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="container" layout:fragment="conteudo">
+    <h1>Lista de Livros</h1>
+    <div th:if="!${#strings.isEmpty(msg)}" class="alert alert-success">
+        <span th:text="${msg}"></span>
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <th>Titulo</th>
+            <th>Preço</th>
+            <th>Genero</th>
+            <th>Sinopse</th>
+            <th>Paginas</th>
+            <th>ISBN</th>
+            <th>Disponivel</th>
+            <th>Data de Publicação</th>
+        </tr>
+        <tr th:each="livro:${books}">
+            <td th:text="${livro.titulo}"></td>
+            <td th:text="${#numbers.formatDecimal(livro.preco, 1, 2)}"></td>
+            <td th:text="${livro.genero}"></td>
+            <td th:text="${livro.sinopse}"></td>
+            <td th:text="${livro.paginas}"></td>
+            <td th:text="${livro.isbn}"></td>
+            <td th:text="${livro.disponivel? 'Sim' : 'Nao'}"></td>
+            <td th:text="${#temporals.format(livro.dataPublicacao, 'dd/MM/yyyy')}"></td>
+            <td><a th:href="@{/livro/editar_livro/}+${livro.id}">Editar</a></td>
+            <!-- Button trigger modal -->
+            <td><button th:onclick="|livroId.value = ${livro.id}|" type="button" class="btn btn-primary"
+                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Remover
+                </button>
+
+            </td>
+        </tr>
+    </table>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Remover Livro</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Deseja excluir o livro?
+                </div>
+                <form th:action="@{/livro/excluir_livro}" method="post">
+                    <input type="hidden" name="id" id="livroId">
+                    <button type="submit" class="btn btn-danger">Sim</button>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

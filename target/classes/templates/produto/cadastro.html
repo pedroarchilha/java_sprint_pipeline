@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Produto</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <style>
+        /* Estilo de fundo degradê */
+        body {
+            background: linear-gradient(to right, limegreen, darkblue);
+            color: #fff; /* Cor dos textos em contraste */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Estilo do conteúdo principal */
+        .conteudo {
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.7); /* Fundo semi-transparente para contraste com o degradê */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #ffff00; /* Destaque para o título */
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        /* Estilo dos inputs e labels */
+        input, select {
+            border: 2px solid #8a2be2; /* Borda roxa para os inputs */
+            border-radius: 4px;
+            padding: 0.5rem;
+            background: #fff;
+            color: #000;
+            width: calc(100% - 1.2rem);
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        /* Estilo do botão */
+        button {
+            background-color: #ffcc00; /* Cor de fundo do botão */
+            border: none;
+            color: #000;
+            padding: 0.7rem 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e6b800; /* Cor do botão quando em hover */
+        }
+    </style>
+</head>
+
+<body>
+
+<div layout:fragment="conteudo">
+    <h1>Cadastro de Produto</h1>
+    <p th:text="${nome}"></p>
+    <p th:text="${preco}"></p>
+
+    <form action="/produto/cadastrar" method="post">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome">
+        <label for="preco">Preço</label>
+        <input type="number" id="preco" name="preco">
+        <button type="submit">Cadastrar</button>
+    </form>
+</div>
+
+</body>
+</html>

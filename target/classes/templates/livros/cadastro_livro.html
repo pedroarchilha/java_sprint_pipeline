@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Livros</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+
+</head>
+<body>
+
+<div class="container" layout:fragment="conteudo">
+    <h1>Cadastro de Livro</h1>
+    <div th:if="!${#strings.isEmpty(msg)}" class="alert alert-success">
+        <span th:text="${msg}"></span>
+    </div>
+    <form th:action="@{/livro/cadastrar}" th:object="${livro}" method="post">
+        <div class="mb-3">
+            <label class="form-label">Titulo</label>
+            <input th:field="*{titulo}" id="titulo" type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Sinopse</label>
+            <textarea th:field="*{sinopse}" id="sinopse" type="text" class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Preço</label>
+            <input th:field="*{preco}" id="preco" type="number" class="form-control"></input>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Paginas</label>
+            <input th:field="*{paginas}" id="paginas" type="number" class="form-control"></input>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">ISBN</label>
+            <input th:field="*{isbn}" type="text" class="form-control"></input>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Data Publicação</label>
+            <input th:field="*{dataPublicacao}" type="date" class="form-control"></input>
+        </div>
+        <div class="mb-3">
+            <input th:field="*{disponivel}" type="checkbox"></input>
+            <label class="form-label">Disponivel</label>
+        </div>
+        <div>
+            <label for="opcaoDisponivel" class="form-label ms-2">Genero</label>
+            <select id="opcaoDisponivel" name="genero" class="form-select">
+                <option value="" disabled selected>Escolha um gênero</option>
+                <option th:each="genero : ${valorGenero}"
+                        th:value="${genero}"
+                        th:text="${genero.label}">
+                </option>
+            </select>
+        </div>
+        <div>
+            <button class="btn btn-success">Cadastrar</button>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>

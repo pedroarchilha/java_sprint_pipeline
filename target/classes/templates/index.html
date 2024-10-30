@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FIAP Store</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <style>
+        /* Estilo de fundo degradê */
+        body {
+            background: linear-gradient(to right, limegreen, darkblue);
+            color: #fff; /* Cor dos textos em contraste */
+            font-family: Arial, sans-serif;
+        }
+
+        /* Estilo dos links */
+        a {
+            color: #ffcc00; /* Cor contrastante para os links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilo para inputs */
+        input, textarea, select {
+            border: 2px solid #8a2be2; /* Borda roxa para os inputs */
+            border-radius: 4px;
+            padding: 0.5rem;
+            background: #fff;
+            color: #000;
+        }
+
+        /* Estilo do conteúdo principal */
+        .conteudo {
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente para contraste com o degradê */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #ffff00; /* Destaque para o título */
+        }
+
+        /* Estilo para divs e outros elementos */
+        div {
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+
+<div layout:fragment="conteudo">
+    <h1>Olá Mundo Spring MVC</h1>
+    <div>
+        <a th:href="@{/produto/cadastrar}">Cadastro de Produto</a>
+        <a th:href="@{/calculadora/media}">Calculadora de média</a>
+        <a th:href="@{/calculadora/media}">Calculadora de média</a>
+        <a th:href="@{/livros/cadastro_livro}">Cadastrar Livro</a>
+        <a th:href="@{/livros/lista_livros}">Listar Livros</a>
+    </div>
+
+</div>
+</body>
+
+</html>
