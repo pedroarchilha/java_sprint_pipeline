@@ -4,14 +4,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de Livros - test pipeline</title>
+    <title>Cadastro de Livros</title>
     <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 
 </head>
 <body>
 
 <div class="container" layout:fragment="conteudo">
-    <h1>Cadastro de Livro</h1>
+    <h1>Cadastro de Livro - test pipeline</h1>
     <div th:if="!${#strings.isEmpty(msg)}" class="alert alert-success">
         <span th:text="${msg}"></span>
     </div>
